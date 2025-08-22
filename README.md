@@ -1,1 +1,16 @@
-Code using "Layerwise Attention for Finetuning Language Models"
+Layer-wise attention for finetuning language models
+-----------------
+- Conventional language models such as BERT are typically fine-tuned by passing the output of the final encoder through a linear layer after processing through multiple encoders. However, several studies have reported that the intermediate encoders, not only the last one, also contain meaningful information. Therefore, we designed a fine-tuning method called "layer-wise attention", which leverages the information across all stacked encoders in BERT without discarding them, thereby maximizing their utility.
+- The dataset we used to evaluate our model is the GLUE benchmark. GLUE (General Language Understanding Evaluation) is a widely used benchmark for natural language understanding, consisting of 10 tasks—9 standard tasks and an additional diagnostic task—designed to evaluate language models across a variety of linguistic phenomena and generalization challenges.
+- The file "BERT_base.ipynb" uses the standard BERT model and serves as the baseline for comparison. "BERT_custom.ipynb", on the other hand, implements layer-wise attention and contains the code used for our experiments.
+- Since these are notebook files, you can execute the code cells sequentially. To select the dataset and model, you need to set a few variables:
+  - Set `dataset_n` and `file_n` according to the task you want to run.
+  - Specify the newly defined pivot layer using `layerForAttention`.
+  - Choose the attention function via `attn_func`.
+- To save the prediction results to a file, configure the output path. Additionally, for task-specific result formatting, uncomment and use the relevant sections in the notebook as needed while executing the cells.
+- Requirements
+  - transformers version: 4.30.2
+  - Python version: 3.8.10
+  - Huggingface_hub version: 0.15.1
+  - Safetensors version: 0.3.1
+  - PyTorch version (GPU?): 2.0.1+cu117 (True)
